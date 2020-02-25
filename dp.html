@@ -1,0 +1,36 @@
+<!--
+ * @Author: WangYu
+ * @Date: 2020-02-24 16:54:07
+ * @LastEditors: WangYu
+ * @LastEditTime: 2020-02-24 17:02:57
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Object.defineProperty</title>
+</head>
+<body>
+  <div id="app">
+    <p>你好<span id="name"></span></p>
+  </div>
+  <script>
+    var obj = {};
+
+    Object.defineProperty(obj, 'name', {
+      get() {
+        console.log('获取name属性')
+        return document.getElementById('name').innerHTML
+      },
+      set(nick) {
+        console.log('想修改name')
+        document.getElementById('name').innerHTML = nick
+      }
+    })
+
+    obj.name = 'jack'
+    console.log(obj.name)
+  </script>
+</body>
+</html>

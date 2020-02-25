@@ -1,0 +1,27 @@
+<!--
+ * @Author: WangYu
+ * @Date: 2020-02-24 17:03:58
+ * @LastEditors: WangYu
+ * @LastEditTime: 2020-02-24 18:54:24
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="wvue.js"></script>
+  <script>
+    const app = new WVue({
+      data: {foo: 'a',boo: 'b', coo: {a:'ca', b:'cb'}}
+    })
+    //app.$data.foo = 'aaa'
+    //app.$data.coo.a = 'caaaa'
+
+    app.foo = 'aaa'
+    app.coo.a = 'caaaa'
+  </script>
+</body>
+</html>
