@@ -2,7 +2,7 @@
  * @Author: WangYu
  * @Date: 2020-02-24 17:05:00
  * @LastEditors: WangYu
- * @LastEditTime: 2020-02-25 12:03:18
+ * @LastEditTime: 2020-02-25 15:44:33
  * 
  */
 class WVue{
@@ -13,8 +13,13 @@ class WVue{
     //传入data
     this.$data = options.data
 
-    // 相应化处理
+    // 响应化处理
     this.observe(this.$data)
+
+    new Watcher(this, 'foo')
+    this.foo // 读一次 触发依赖收集
+    new Watcher(this, 'coo.a')
+    this.coo.a
   }
 
   observe(value) {
@@ -48,6 +53,7 @@ class WVue{
         if(newVal !== value) {
           value = newVal
           console.log(key + '属性更新了')
+          dep.notify();
         }
       }
     })
