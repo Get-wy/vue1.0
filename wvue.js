@@ -2,7 +2,7 @@
  * @Author: WangYu
  * @Date: 2020-02-24 17:05:00
  * @LastEditors: WangYu
- * @LastEditTime: 2020-02-25 15:44:33
+ * @LastEditTime: 2020-02-26 19:04:44
  * 
  */
 class WVue{
@@ -13,13 +13,15 @@ class WVue{
     //传入data
     this.$data = options.data
 
-    // 响应化处理
-    this.observe(this.$data)
+    // // 响应化处理
+    // this.observe(this.$data)
 
-    new Watcher(this, 'foo')
-    this.foo // 读一次 触发依赖收集
-    new Watcher(this, 'coo.a')
-    this.coo.a
+    // new Watcher(this, 'foo')
+    // this.foo // 读一次 触发依赖收集
+    // new Watcher(this, 'coo.a')
+    // this.coo.a
+
+    new Compile(options.el, this);
   }
 
   observe(value) {

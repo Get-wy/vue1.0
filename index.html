@@ -2,7 +2,7 @@
  * @Author: WangYu
  * @Date: 2020-02-24 17:03:58
  * @LastEditors: WangYu
- * @LastEditTime: 2020-02-24 18:54:24
+ * @LastEditTime: 2020-02-26 19:05:40
  -->
 <!DOCTYPE html>
 <html lang="en">
@@ -12,16 +12,48 @@
   <title>Document</title>
 </head>
 <body>
-  <script src="wvue.js"></script>
+  <div id="app">
+    <p>{{name}}</p>
+    <p k-text="name"></p>
+    <p>{{age}}</p>
+    <p>{{twoAge}}</p>
+    <p type="text" k-model="name"></p>
+    <button @click="changeName">点我</button>
+    <div k-html="html"></div>
+  </div>
+
+  <script src="./compile.js"></script>
+  <script src="./wvue.js"></script>
+
   <script>
-    const app = new WVue({
-      data: {foo: 'a',boo: 'b', coo: {a:'ca', b:'cb'}}
-    })
+    // const app = new WVue({
+    //   data: {foo: 'a',boo: 'b', coo: {a:'ca', b:'cb'}}
+    // })
     //app.$data.foo = 'aaa'
     //app.$data.coo.a = 'caaaa'
 
-    app.foo = 'aaa'
-    app.coo.a = 'caaaa'
+    // app.foo = 'aaa'
+    // app.coo.a = 'caaaa'
+
+    const wyVue = new WVue({
+      el:'#app',
+      data: {
+        name:'name',
+        age: 222,
+        html:'<h1>这里是h1文字<h1>'
+      },
+      created() {
+        console.log('创建开始啦')
+        setTimeout(() => {
+          this.name = '我是来测试name'
+        }, 2000)
+      },
+      methods: {
+        
+      },
+    }) 
+
+
   </script>
 </body>
 </html>
