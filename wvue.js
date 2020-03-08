@@ -2,7 +2,7 @@
  * @Author: WangYu
  * @Date: 2020-02-24 17:05:00
  * @LastEditors: WangYu
- * @LastEditTime: 2020-02-26 19:04:44
+ * @LastEditTime: 2020-03-08 21:14:45
  * 
  */
 class WVue{
@@ -14,7 +14,7 @@ class WVue{
     this.$data = options.data
 
     // // 响应化处理
-    // this.observe(this.$data)
+    this.observe(this.$data)
 
     // new Watcher(this, 'foo')
     // this.foo // 读一次 触发依赖收集
@@ -22,6 +22,10 @@ class WVue{
     // this.coo.a
 
     new Compile(options.el, this);
+
+    if(options.created) {
+      options.created.call(this)
+    }
   }
 
   observe(value) {
@@ -93,15 +97,21 @@ class Dep {
 //创建watcher：保存和页面中的挂钩关系  data中的数值 和 页面关系
 
 class Watcher {
-  constructor(vm, key) {
+  constructor(vm, key, cb) {
     // 创建实例立刻将该实例指向 Dep.target 便于依赖收集
-    Dep.target = this;
     this.vm = vm
     this.key = key
+    this.cb = cb
+
+    // 出发依赖收集
+    Dep.target = this;
+    this.vm[this.key] 
+    Dep.target = null
   }
 
   //更新
   update() {
     console.log(this.key + '更新了！')
+    this.cb.call(this.vm, this.vm[this.key] )
   }
 }
